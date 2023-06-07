@@ -12,7 +12,7 @@ const App = () => {
       </Container>
     </main>
     </>
-  )
+  );
 }
 
 export default App
