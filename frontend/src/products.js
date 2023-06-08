@@ -60,3 +60,6 @@ const products = [
         countInStock: 1, 
     },
 ]
+
+
+export default products
