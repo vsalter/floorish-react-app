@@ -1,6 +1,5 @@
 const products = [
     {
-        _id: '1',
         name: 'Air Max 1',
         image: '/images/AirMax1_Canyon.jpg',
         description: 'Canyon Gold/Black/White, Suede/Leather',
@@ -10,7 +9,6 @@ const products = [
         countInStock: 1, 
     },
     {
-        _id: '2',
         name: 'Air Max 90',
         image: '/images/AM90_Maroon.jpg',
         description: 'Maroon/Infrared, Leather',
@@ -20,7 +18,6 @@ const products = [
         countInStock: 1, 
     },
     {
-        _id: '3',
         name: 'Air Jordan 3 Retro',
         image: '/images/Jordan_Flip_3.jpg',
         description: 'Black/Cement, Leather',
@@ -30,7 +27,6 @@ const products = [
         countInStock: 1, 
     },
     {
-        _id: '4',
         name: 'Air Jordan 11 Retro',
         image: '/images/Jordan-11-SpaceJam9.jpg',
         description: 'Black/White, Patent Leather/Leather/Nylon',
@@ -40,7 +36,6 @@ const products = [
         countInStock: 1, 
     },
     {
-        _id: '5',
         name: 'New Balance 580',
         image: '/images/NewBalance_BlackRed.jpg',
         description: 'Black/Red/Grey, Suede/Nubuck/Leather',
@@ -50,7 +45,6 @@ const products = [
         countInStock: 1, 
     },
     {
-        _id: '6',
         name: 'Nike Air CB 34',
         image: '/images/NikeCB34.jpg',
         description: 'Black/Orange/Purple, Suede/Leather',
