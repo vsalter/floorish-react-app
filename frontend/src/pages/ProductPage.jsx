@@ -1,19 +1,29 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Form, Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { addToCart } from '../slices/cartSlice';
 
 
 
 const ProductPage = () => {
     const { id: productId } = useParams();
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [qty, setQty] = useState(1);
 
     const { data: product, isLoading, error } = useGetProductDetailsQuery(productId);
+
+    const addToCartHandler = () => {
+        dispatch(addToCart({ ...product, qty }));
+        navigate('/cart');
+    };
 
     return (
         <>
@@ -68,7 +78,7 @@ const ProductPage = () => {
                             )}
 
                             <ListGroup.Item>
-                                <Button className="btn-block" type="button" disabled={product.countInStock === 0}>Add To Cart</Button>
+                                <Button className="btn-block" type="button" disabled={product.countInStock === 0} onClick={addToCartHandler}>Add To Cart</Button>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>
