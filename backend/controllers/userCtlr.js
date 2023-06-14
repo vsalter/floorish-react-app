@@ -10,9 +10,9 @@ const authUser = asyncHandler(async (req, res) => {
     const User = await user.findOne({ email });
 
     if (User && (await User.matchPassword(password))) {
-        generateToken(res, user._id);
+        generateToken(res, User._id);
 
-        res.json({
+        res.status(200).json({
             _id: User._id,
             name: User.name,
             email: User.email,
@@ -43,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
     if (User) {
         generateToken(res, User._id);
 
-        res.status(201).json({
+        res.status(200).json({
             _id: User._id,
             name: User.name,
             email: User.email,
@@ -65,11 +65,44 @@ const logoutUser = asyncHandler(async (req, res) => {
 });
 
 const getUserProfile = asyncHandler(async (req, res) => {
-    res.send('get user profile');
+    const User = await user.findById(req.user._id);
+
+    if (User) {
+        res.status(200).json({
+            _id: User._id,
+            name: User.name,
+            email: User.email,
+            isAdmin: User.isAdmin,
+        });
+    } else {
+        res.status(400);
+        throw new Error('User not found');
+    }
 });
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-    res.send('update user profile');
+    const User = await user.findById(req.user._id);
+
+    if (User) {
+        User.name = req.body.name || User.name;
+        User.email = req.body.email || User.email;
+
+        if (req.body.password) {
+            User.password = req.body.password;
+        }
+
+        const updatedUser = await User.save();
+
+        res.status(200).json({
+            _id: updateUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+        });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
 });
 
 const getUsers = asyncHandler(async (req, res) => {
