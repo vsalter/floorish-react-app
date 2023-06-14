@@ -1,9 +1,24 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import product from '../models/product.js';
+import user from '../models/user.js';
+
 
 
 const authUser = asyncHandler(async (req, res) => {
-    res.send('auth user');
+    const { email, password } = req.body;
+
+    const User = await user.findOne({ email });
+
+    if (User && (await User.matchPassword(password))) {
+        res.json({
+            _id: User._id,
+            name: User.name,
+            email: User.email,
+            isAdmin: User.isAdmin
+        });
+    } else {
+        res.status(401);
+        throw new Error('Invalid email or password');
+    }
 });
 
 const registerUser = asyncHandler(async (req, res) => {
