@@ -97,6 +97,7 @@ const ProductEditPage = () => {
                         <Form.Control type="text" placeholder="Enter image url" value={image} onChange={(e) => setImage}></Form.Control>
                         <Form.Control type="file" label="Choose file" onChange={uploadFileHandler}></Form.Control>
                     </Form.Group>
+                    {loadingUpload && <Loader />}
                     <Form.Group controlId="brand" className="my-2">
                         <Form.Label>Brand</Form.Label>
                         <Form.Control type="text" placeholder="Enter brand" value={brand} onChange={(e) => setBrand(e.target.value)}></Form.Control>
